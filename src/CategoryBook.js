@@ -22,7 +22,7 @@ function CreateCategoryBooks(props){
                       </div>
                   </div>
                   <div className="book-title">{crbook.title}</div>
-                  <div className="book-authors">{crbook.authors[0]}</div>
+                  <div className="book-authors">{crbook.authors ? crbook.authors[0] : ''}</div>
                   </div>
               </li>
             ))}
