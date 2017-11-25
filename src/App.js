@@ -39,6 +39,8 @@ class BooksApp extends React.Component {
           wantToRead: state.wantToRead.filter((c) => c.id !== book.id)
         }))
         break;
+      default:
+        break;
     }
   }
 
@@ -60,14 +62,15 @@ class BooksApp extends React.Component {
           wantToRead: state.wantToRead.concat(book)
         }))
         break;
+      default:
+        break;  
     }
   }
 
   change(book, value){
-    BooksAPI.update(book, value).then(() => {
-      this.removeBook(book)
-      this.changeSelfBook(book,value)
-    })
+    BooksAPI.update(book, value)
+    this.removeBook(book)
+    this.changeSelfBook(book,value)
   }
 
   render(){
@@ -79,7 +82,7 @@ class BooksApp extends React.Component {
             }}/>
         )}/>
         <Route path="/search" render={({history}) => (
-          <SearchBooks onChange={(book, value) =>{
+          <SearchBooks actualBooks={this.state} onChange={(book, value) =>{
               this.change(book, value)
             }}/>
         )}/>
